@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smaksiss <smaksiss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smaksiss <smaksiss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 11:32:07 by smaksiss          #+#    #+#             */
-/*   Updated: 2024/11/07 11:24:01 by smaksiss         ###   ########.fr       */
+/*   Created: 2025/10/26 11:21:29 by smaksiss          #+#    #+#             */
+/*   Updated: 2025/10/30 13:02:33 by smaksiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../header.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}
+
+char	*ft_substr(char *s, int start, int len)
 {
 	char	*str;
-	size_t	i;
+	int	i;
 
 	i = 0;
 	if (s == NULL)
@@ -31,4 +38,28 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		str[i++] = s[start++];
 	str[i] = '\0';
 	return (str);
+}
+
+int	ft_atoi(char	*str)
+{
+	int		num;
+	int					i;
+
+	i = 0;
+	num = 0;
+	while (str[i] <= 32)
+		i++;
+    if (str[i] == '-')
+        return (-1);
+	if (str[i] == '+')
+		i++;
+	while (str[i] && ft_isdigit(str[i]) && num < 500)
+		num = num * 10 + (str[i++] - '0');
+    while (str[i] && str[i] <= 32)
+        i++;
+    if (num > 255 || num < 0)
+        return (-1);
+    if (str[i])
+        return (-1);
+	return (num);
 }

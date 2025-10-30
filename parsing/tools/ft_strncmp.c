@@ -1,16 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smaksiss <smaksiss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smaksiss <smaksiss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 19:10:29 by smaksiss          #+#    #+#             */
-/*   Updated: 2024/11/04 10:26:15 by smaksiss         ###   ########.fr       */
+/*   Created: 2025/10/25 13:40:27 by smaksiss          #+#    #+#             */
+/*   Updated: 2025/10/30 11:49:17 by smaksiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../header.h"
+
+int	ft_strncmp(char *s1, char *s2, int n)
+{
+	int	i;
+
+	i = 0;
+    if (!s1 || !s2)
+		return (-1);
+	if (n == 0)
+		return (0);
+	while (i < n && s1[i] == s2[i] && s1[i] && s2[i])
+		i++;
+	if (i == n)
+		return (0);
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
+
+int	ft_strlen(char *str)
+{
+	int i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i])
+		i++;
+	return (i);
+}
 
 static int	ft_count_words(const char *s, char c)
 {
